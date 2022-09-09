@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 //API setup
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://shrouded-temple-70247.herokuapp.com/",
 });
 
 

@@ -7,7 +7,7 @@ import Nav from "../Nav";
 
 //API setup
 const api = axios.create({
-  baseURL: "http://localhost:5000/blog/",
+  baseURL: "https://shrouded-temple-70247.herokuapp.com/blog/",
 });
 
 function BlogIndex() {

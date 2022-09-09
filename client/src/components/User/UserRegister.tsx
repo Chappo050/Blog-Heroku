@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 //API setup
 const api = axios.create({
-  baseURL: "http://localhost:5000/user/register",
+  baseURL: "https://shrouded-temple-70247.herokuapp.com/user/register",
 });
 
 

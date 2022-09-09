@@ -4,7 +4,7 @@ import axios from "axios";
 
 //API setup
 const api = axios.create({
-  baseURL: "http://localhost:5000/blog/post",
+  baseURL: "https://shrouded-temple-70247.herokuapp.com/blog/post",
   withCredentials: true,
 });
 
