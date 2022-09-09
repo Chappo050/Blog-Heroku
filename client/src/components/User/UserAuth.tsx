@@ -12,7 +12,7 @@ function Auth({ children }: { children: JSX.Element }) {
   //Get sessions information
   async function checkAuth() {
     await axios
-      .get("https://shrouded-temple-70247.herokuapp.com/user/auth/", {
+      .get("https://shrouded-temple-70247.herokuapp.com/user/auth", {
         withCredentials: true,
       })
       .then((res) => {

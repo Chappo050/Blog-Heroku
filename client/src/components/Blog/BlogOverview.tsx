@@ -4,7 +4,7 @@ import axios from "axios";
 const { DateTime } = require("luxon");
 
 const api = axios.create({
-  baseURL: "https://shrouded-temple-70247.herokuapp.com/blog/",
+  baseURL: "https://shrouded-temple-70247.herokuapp.com/blog",
 });
 
 interface User {
