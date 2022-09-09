@@ -116,11 +116,11 @@ function BlogUser() {
         <i />
         <div className="text-2xl text-center col-span-3">
           <h1>USERS PAGE!</h1>
-          {posts.length > 0 ? (
+          {posts.length > 0 ? 
             posts.map((post) => PostContainer(post, auth, delPost, editPost))
-          ) : (
+           : 
             <h1>No posts yet</h1>
-          )}
+          }
           <div className="pt-5">
             <button
               className="text-4xl hover:bg-custom-dark-blue w-10 "
