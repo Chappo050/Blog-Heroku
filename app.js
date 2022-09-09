@@ -12,8 +12,8 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-const multer  = require('multer')
-const cors = require('cors');
+const multer = require("multer");
+const cors = require("cors");
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
@@ -21,7 +21,7 @@ const session = require("express-session");
 const compression = require("compression"); //Compression
 const helmet = require("helmet"); //Protection
 const initilizePassport = require("./passport_config");
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
 //Model
 const User = require("./models/user.js");
 
@@ -43,20 +43,16 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-
-
-
-
 //Middleware
-app.use(cors({origin: "URL ALLOWED", credentials: true}))
+app.use(cors({ origin: "URL ALLOWED", credentials: true }));
 app.use(flash());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    cookie:{_expires: (86400000 ) }, //1 day
+    cookie: { _expires: 86400000 }, //1 day
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: mongoDB, collection: 'sessions' })
+    store: MongoStore.create({ mongoUrl: mongoDB, collection: "sessions" }),
   })
 );
 app.use(passport.initialize());
@@ -70,33 +66,22 @@ app.use(compression()); //Compress all routes
 
 
 
+app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static("public"));
 
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 //ROUTES
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 app.use("/blog", blogRouter);
 
-//Production set up
-if (process.env.NODE_ENV === "production") {
-  
-  app.use(express.static("client/build"));
-
-  app.get("*", (req, res) => {
-
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-
- });
-
-}
-
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
-
 
 // error handler
 app.use(function (err, req, res, next) {

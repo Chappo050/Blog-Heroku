@@ -18,9 +18,9 @@ var cookieParser = require("cookie-parser");
 
 var logger = require("morgan");
 
-var multer = require('multer');
+var multer = require("multer");
 
-var cors = require('cors');
+var cors = require("cors");
 
 var passport = require("passport");
 
@@ -36,7 +36,7 @@ var helmet = require("helmet"); //Protection
 
 var initilizePassport = require("./passport_config");
 
-var MongoStore = require('connect-mongo'); //Model
+var MongoStore = require("connect-mongo"); //Model
 
 
 var User = require("./models/user.js"); //Route imports
@@ -76,7 +76,7 @@ app.use(session({
   saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: mongoDB,
-    collection: 'sessions'
+    collection: "sessions"
   })
 }));
 app.use(passport.initialize());
@@ -89,19 +89,16 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(cookieParser());
 app.use(compression()); //Compress all routes
-//ROUTES
+
+app.use(express["static"](path.join(__dirname, "client", "build")));
+app.use(express["static"]("public"));
+app.use(function (req, res, next) {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+}); //ROUTES
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
-app.use("/blog", blogRouter); //Production set up
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express["static"]("client/build"));
-  app.get("*", function (req, res) {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-} // catch 404 and forward to error handler
-
+app.use("/blog", blogRouter); // catch 404 and forward to error handler
 
 app.use(function (req, res, next) {
   next(createError(404));
