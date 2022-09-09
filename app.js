@@ -67,14 +67,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(compression()); //Compress all routes
-//app.use(express.static(path.join(__dirname, "public")));
-
-
-
-//ROUTES
-app.use("/", indexRouter);
-app.use("/user", userRouter);
-app.use("/blog", blogRouter);
+app.use(express.static(path.join(__dirname, "public")));
 
 //Production set up
 if (process.env.NODE_ENV === "production") {
@@ -88,6 +81,13 @@ if (process.env.NODE_ENV === "production") {
  });
 
 }
+
+//ROUTES
+app.use("/", indexRouter);
+app.use("/user", userRouter);
+app.use("/blog", blogRouter);
+
+
 
 
 // catch 404 and forward to error handler
