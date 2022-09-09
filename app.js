@@ -66,8 +66,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(compression()); //Compress all routes
-app.use(express.static(path.join(__dirname, "public")));
+//app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.static("client/build"));
 
 //ROUTES
 app.use("/", indexRouter);
@@ -83,7 +84,6 @@ app.use(function (req, res, next) {
 //Production set up
 if (process.env.NODE_ENV === "production") {
 
-  app.use(express.static("client/build"));
 
   app.get("*", (req, res) => {
 
