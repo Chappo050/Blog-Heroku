@@ -44,6 +44,18 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 
+//Production set up
+if (process.env.NODE_ENV === "production") {
+  
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+
+ });
+
+}
 
 
 //Middleware
@@ -68,7 +80,7 @@ app.use(cookieParser());
 app.use(compression()); //Compress all routes
 //app.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.static("client/build"));
+
 
 //ROUTES
 app.use("/", indexRouter);
@@ -81,17 +93,6 @@ app.use(function (req, res, next) {
 });
 
 
-//Production set up
-if (process.env.NODE_ENV === "production") {
-
-
-  app.get("*", (req, res) => {
-
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-
- });
-
-}
 
 // error handler
 app.use(function (err, req, res, next) {
