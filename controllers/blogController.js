@@ -121,10 +121,8 @@ exports.get_post_list = (req, res, next) => {
 // Display list of all books.
 exports.get_user_post_list = (req, res, next) => {
   let query = {};
-  (req.params.userId + "   " + req.query.auth);
   //Not logged in
   if (req.params.userId && req.query.auth === "false") {
-    ("here");
     const userId = req.params.userId;
     query = { user_details: userId, isPublic: true };
   }
@@ -175,13 +173,6 @@ exports.edit_post = [
         },
         { message: req.body.message, isPublic: req.body.isPublic },
         { new: true },
-        (err, doc) => {
-          if (err) {
-            ("Something wrong when updating data!");
-          }
-
-          (doc);
-        }
       );
       res.status(200).json({ message: "Updated" });
     }
@@ -201,8 +192,6 @@ exports.delete_post = (req, res, next) => {
 
 exports.check_current_user = (req, res, next) => {
   try {
-    (req.user.id);
-    (req.params.userId);
     if (req.user.id === req.params.userId) {
       res.status(200).json({logged: true})
     } else {

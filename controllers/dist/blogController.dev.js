@@ -141,11 +141,9 @@ exports.get_post_list = function (req, res, next) {
 
 
 exports.get_user_post_list = function (req, res, next) {
-  var query = {};
-  req.params.userId + "   " + req.query.auth; //Not logged in
+  var query = {}; //Not logged in
 
   if (req.params.userId && req.query.auth === "false") {
-    "here";
     var userId = req.params.userId;
     query = {
       user_details: userId,
@@ -201,12 +199,6 @@ function (req, res, next) {
       isPublic: req.body.isPublic
     }, {
       "new": true
-    }, function (err, doc) {
-      if (err) {
-        "Something wrong when updating data!";
-      }
-
-      doc;
     });
     res.status(200).json({
       message: "Updated"
@@ -229,9 +221,6 @@ exports.delete_post = function (req, res, next) {
 
 exports.check_current_user = function (req, res, next) {
   try {
-    req.user.id;
-    req.params.userId;
-
     if (req.user.id === req.params.userId) {
       res.status(200).json({
         logged: true

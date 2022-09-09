@@ -89,12 +89,12 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(cookieParser());
 app.use(compression()); //Compress all routes
-//ROUTES
+
+app.use(express["static"](path.join(__dirname, "client", "build"))); //ROUTES
 
 app.use("/api", indexRouter);
 app.use("/api/user", userRouter);
-app.use("/api/blog", blogRouter);
-app.use(express["static"](path.join(__dirname, "client", "build"))); // catchall
+app.use("/api/blog", blogRouter); // catchall
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "clien", "build", "index.html"));
