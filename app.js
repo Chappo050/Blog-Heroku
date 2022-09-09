@@ -47,7 +47,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 
 //Middleware
-app.use(cors({origin: true, credentials: true}))
+app.use(cors({origin: "URL ALLOWED", credentials: true}))
 app.use(flash());
 app.use(
   session({
