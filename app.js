@@ -68,6 +68,15 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(compression()); //Compress all routes
 
+
+
+
+
+//ROUTES
+app.use("/", indexRouter);
+app.use("/user", userRouter);
+app.use("/blog", blogRouter);
+
 //Production set up
 if (process.env.NODE_ENV === "production") {
   
@@ -80,15 +89,6 @@ if (process.env.NODE_ENV === "production") {
  });
 
 }
-
-
-
-//ROUTES
-app.use("/", indexRouter);
-app.use("/user", userRouter);
-app.use("/blog", blogRouter);
-
-
 
 
 // catch 404 and forward to error handler

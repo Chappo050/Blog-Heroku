@@ -62,7 +62,7 @@ var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:")); //Middleware
 
 app.use(cors({
-  origin: true,
+  origin: "URL ALLOWED",
   credentials: true
 }));
 app.use(flash());
@@ -89,15 +89,19 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(cookieParser());
 app.use(compression()); //Compress all routes
-
-app.use(express["static"](path.join(__dirname, "public")));
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-}); //ROUTES
+//ROUTES
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
-app.use("/blog", blogRouter); // catch 404 and forward to error handler
+app.use("/blog", blogRouter); //Production set up
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express["static"]("client/build"));
+  app.get("*", function (req, res) {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+} // catch 404 and forward to error handler
+
 
 app.use(function (req, res, next) {
   next(createError(404));
