@@ -67,9 +67,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(compression()); //Compress all routes
 app.use(express.static(path.join(__dirname, "public")));
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
 
 //ROUTES
 app.use("/", indexRouter);

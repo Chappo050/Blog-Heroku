@@ -2,8 +2,12 @@
 import { Navigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { baseURL } from "../baseURL";
 //API setup
+const api = axios.create({
+  baseURL:  baseURL,
+  withCredentials: true,
+});
 
 function Auth({ children }: { children: JSX.Element }) {
   const [logged, setLogged] = useState(false);
@@ -11,8 +15,8 @@ function Auth({ children }: { children: JSX.Element }) {
 
   //Get sessions information
   async function checkAuth() {
-    await axios
-      .get("https://shrouded-temple-70247.herokuapp.com/user/auth", {
+    await api
+      .get("/user/auth", {
         withCredentials: true,
       })
       .then((res) => {

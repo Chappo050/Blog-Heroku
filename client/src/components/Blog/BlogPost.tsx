@@ -1,10 +1,10 @@
 //IMPROTS//
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { baseURL } from "../baseURL";
 //API setup
 const api = axios.create({
-  baseURL: "https://shrouded-temple-70247.herokuapp.com/blog/post",
+  baseURL:  baseURL + "/blog/post",
   withCredentials: true,
 });
 
