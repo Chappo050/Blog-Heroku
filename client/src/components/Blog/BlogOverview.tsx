@@ -24,16 +24,7 @@ interface Post {
   isPublic: Boolean;
 }
 
-const defaultPost: Post[] = [{
-  _id: "hello",
-  user_details: {
-    _id: "hello",
-    username: "Mattttew",
-  },
-  message: "hello",
-  post_time: "23423",
-  isPublic: true,
-}];
+const defaultPost: Post[] = [];
 
 function BlogOverview() {
   const [posts, setPosts]: [Post[], (posts: Post[]) => void] =
