@@ -91,9 +91,9 @@ app.use(cookieParser());
 app.use(compression()); //Compress all routes
 //ROUTES
 
-app.use("/", indexRouter);
-app.use("/user", userRouter);
-app.use("/blog", blogRouter);
+app.use("/api", indexRouter);
+app.use("/api/user", userRouter);
+app.use("/api/blog", blogRouter);
 app.use(express["static"](path.join(__dirname, "client", "build"))); // catchall
 
 app.get("/*", function (req, res) {
