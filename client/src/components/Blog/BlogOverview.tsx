@@ -87,11 +87,11 @@ function BlogOverview() {
         <i />
         <div className="text-2xl p-3 text-center col-span-3 ">
           <h1>MOST RECENT POSTS</h1>
-          {posts ? (
+          {posts ? 
             posts.map((post) => PostContainer(post))
-          ) : (
+           : 
             <h1>No posts yet</h1>
-          )}
+          }
           <div className="pt-5 ">
             <button
               className="text-4xl hover:bg-custom-dark-blue w-10 "
