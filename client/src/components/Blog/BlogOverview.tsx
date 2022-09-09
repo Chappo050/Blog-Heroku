@@ -54,7 +54,7 @@ function BlogOverview() {
   //get data for next page
   useEffect(() => {
     api
-      .get("/overview/", {
+      .get("/overview", {
         params: {
           pointer: postPointer,
         },
