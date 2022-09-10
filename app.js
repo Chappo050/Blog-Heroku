@@ -74,7 +74,7 @@ app.use("/blog", blogRouter);
 
 // catchall
 app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "clien", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 // catch 404 and forward to error handler
