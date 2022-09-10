@@ -92,9 +92,9 @@ app.use(compression()); //Compress all routes
 
 app.use(express["static"](path.join(__dirname, "client", "build"))); //ROUTES
 
-app.use("/", indexRouter);
-app.use("/user", userRouter);
-app.use("/blog", blogRouter); // catchall
+app.use("/api/user", userRouter);
+app.use("/api/blog", blogRouter);
+app.use("/api", indexRouter); // catchall
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
