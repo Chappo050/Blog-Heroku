@@ -1,4 +1,4 @@
-export let baseURL = 'https://mern-blog-chappo050.herokuapp.com/api'
+export let baseURL = 'https://mern-blog-chappo050.herokuapp.com'
 if (process.env.NODE_ENV === 'development') {
     baseURL = "http://localhost:5000"
 }
