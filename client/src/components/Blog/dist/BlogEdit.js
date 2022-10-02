@@ -72,7 +72,7 @@ function PostEdit() {
         if (!auth) {
             navigate("/user/login");
         }
-        api.get(window.location.href).then(function (res) {
+        api.get("/api" + window.location.pathname).then(function (res) {
             setformValue(res.data[0]);
         });
     }, []);
@@ -82,7 +82,7 @@ function PostEdit() {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
-                    return [4 /*yield*/, axios_1["default"].post(window.location.pathname, formValue)];
+                    return [4 /*yield*/, axios_1["default"].post("/api" + window.location.pathname, formValue)];
                 case 1:
                     result = _a.sent();
                     if (result.status === 200) {
