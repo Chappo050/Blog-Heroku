@@ -51,11 +51,6 @@ exports.__esModule = true;
 var react_1 = require("react");
 var axios_1 = require("axios");
 var react_router_dom_1 = require("react-router-dom");
-//API setup
-var api = axios_1["default"].create({
-    baseURL: "/api" + window.location.pathname,
-    withCredentials: true
-});
 function PostEdit() {
     var _this = this;
     var navigate = react_router_dom_1.useNavigate();
@@ -72,7 +67,7 @@ function PostEdit() {
         if (!auth) {
             navigate("/user/login");
         }
-        api.get("").then(function (res) {
+        axios_1["default"].get("/api" + window.location.pathname).then(function (res) {
             setformValue(res.data[0]);
         });
     }, []);
@@ -82,7 +77,7 @@ function PostEdit() {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
-                    return [4 /*yield*/, api.post("", formValue)];
+                    return [4 /*yield*/, axios_1["default"].post("/api" + window.location.pathname, formValue)];
                 case 1:
                     result = _a.sent();
                     if (result.status === 200) {

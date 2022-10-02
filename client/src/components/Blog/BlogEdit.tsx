@@ -3,11 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
-//API setup
-const api = axios.create({
-  baseURL: "/api" + window.location.pathname,
-  withCredentials: true
-});
+
 
 function PostEdit() {
   let navigate = useNavigate();
@@ -28,15 +24,16 @@ function PostEdit() {
     if (!auth) {
       navigate("/user/login");
     }
-    api.get("").then((res) => {
+    axios.get("/api" + window.location.pathname).then((res) => {
       setformValue(res.data[0]);
     });
   }, []);
 
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    let result = await api.post( ""  , formValue);
+    let result = await axios.post( "/api" + window.location.pathname  , formValue);
     if (result.status === 200) {
       setMessagePosted(true);
     }

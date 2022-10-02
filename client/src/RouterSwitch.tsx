@@ -28,9 +28,7 @@ const RouteSwitch = () => {
           <Route
             path=":userId"
             element={
-              <UserAuth>
                 <BlogUser />
-              </UserAuth>
             }
           />
           <Route
