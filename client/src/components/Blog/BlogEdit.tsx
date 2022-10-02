@@ -36,7 +36,7 @@ function PostEdit() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    let result = await axios.post( ""  , formValue);
+    let result = await api.post( ""  , formValue);
     if (result.status === 200) {
       setMessagePosted(true);
     }
