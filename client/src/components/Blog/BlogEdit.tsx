@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 //API setup
 const api = axios.create({
-  baseURL: window.location.href,
+  baseURL:  window.location.hostname + "/api" + window.location.pathname,
   withCredentials: true
 });
 

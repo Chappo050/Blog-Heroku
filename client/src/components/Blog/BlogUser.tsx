@@ -5,7 +5,7 @@ import { useNavigate, Outlet } from "react-router-dom";
 const { DateTime } = require("luxon");
 
 const api = axios.create({
-  baseURL: window.location.href,
+  baseURL: window.location.hostname + "/api" + window.location.pathname,
   withCredentials: true,
 });
 

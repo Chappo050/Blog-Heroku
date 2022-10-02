@@ -53,7 +53,7 @@ var axios_1 = require("axios");
 var react_router_dom_1 = require("react-router-dom");
 //API setup
 var api = axios_1["default"].create({
-    baseURL: window.location.href,
+    baseURL: window.location.hostname + "/api" + window.location.pathname,
     withCredentials: true
 });
 function PostEdit() {

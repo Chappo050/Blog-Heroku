@@ -5,7 +5,7 @@ var axios_1 = require("axios");
 var react_router_dom_1 = require("react-router-dom");
 var DateTime = require("luxon").DateTime;
 var api = axios_1["default"].create({
-    baseURL: window.location.href,
+    baseURL: window.location.hostname + "/api" + window.location.pathname,
     withCredentials: true
 });
 var defaultPost = [];
@@ -51,16 +51,12 @@ function BlogUser() {
     }, [postPointer]);
     function getNextSet() {
         //increment pointer to get next 10
-        ("count" + count);
-        ("point" + postPointer);
         if (count - (postPointer + 10) > 0) {
             setPostsPointer(postPointer + 10);
         }
         return;
     }
     function getPrevSet() {
-        ("count" + count);
-        ("point" + postPointer);
         if (postPointer < 10) {
             return;
         }
@@ -84,7 +80,10 @@ function BlogUser() {
             React.createElement("i", null),
             React.createElement("div", { className: "text-2xl text-center col-span-3" },
                 React.createElement("h1", null, "USERS PAGE!"),
-                posts.length > 0 ? (posts.map(function (post) { return PostContainer(post, auth, delPost, editPost); })) : (React.createElement("h1", null, "No posts yet")),
+                posts.length > 0 ?
+                    posts.map(function (post) { return PostContainer(post, auth, delPost, editPost); })
+                    :
+                        React.createElement("h1", null, "No posts yet"),
                 React.createElement("div", { className: "pt-5" },
                     React.createElement("button", { className: "text-4xl hover:bg-custom-dark-blue w-10 ", onClick: getPrevSet }, "<"),
                     React.createElement("i", { className: "w-5 px-10" }),
@@ -93,7 +92,6 @@ function BlogUser() {
 }
 //Creates a singular post
 var PostContainer = function (post, auth, delPost, editPost) {
-    var user_id = post.user_details._id;
     return (React.createElement("div", { className: "border border-custom-silver mt-3 p-3" },
         React.createElement("div", null,
             React.createElement("div", { className: "grid grid-cols-2 text-base " },
