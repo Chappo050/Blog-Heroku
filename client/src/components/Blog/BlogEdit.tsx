@@ -28,7 +28,7 @@ function PostEdit() {
     if (!auth) {
       navigate("/user/login");
     }
-    api.get("/api" + window.location.pathname).then((res) => {
+    api.get("").then((res) => {
       setformValue(res.data[0]);
     });
   }, []);
@@ -36,7 +36,7 @@ function PostEdit() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    let result = await axios.post( "/api" + window.location.pathname  , formValue);
+    let result = await axios.post( ""  , formValue);
     if (result.status === 200) {
       setMessagePosted(true);
     }
