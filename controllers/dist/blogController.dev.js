@@ -202,9 +202,12 @@ function (req, res, next) {
       isPublic: req.body.isPublic
     }, {
       "new": true
-    });
-    res.status(200).json({
-      message: "Updated"
+    }, function (err, info) {
+      if (err) return res.json({
+        success: false,
+        err: err
+      });
+      res.status(200).json(info);
     });
   }
 }]; // Delete post

@@ -174,8 +174,11 @@ exports.edit_post = [
         },
         { message: req.body.message, isPublic: req.body.isPublic },
         { new: true },
-      );
-      res.status(200).json({ message: "Updated" });
+        (err, info) => {
+          if(err) return res.json({success:false, err});
+          res.status(200).json(info)
+      }
+      )
     }
   },
 ];
