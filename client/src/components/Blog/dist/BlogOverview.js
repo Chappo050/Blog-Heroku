@@ -5,7 +5,7 @@ var react_1 = require("react");
 var axios_1 = require("axios");
 var DateTime = require("luxon").DateTime;
 var api = axios_1["default"].create({
-    baseURL: "http://localhost:5000/blog/"
+    baseURL: "/api/blog"
 });
 var defaultPost = [];
 function BlogOverview() {
@@ -30,7 +30,7 @@ function BlogOverview() {
     //get data for next page
     react_1.useEffect(function () {
         api
-            .get("/overview/", {
+            .get("/overview", {
             params: {
                 pointer: postPointer
             }
@@ -59,7 +59,10 @@ function BlogOverview() {
             React.createElement("i", null),
             React.createElement("div", { className: "text-2xl p-3 text-center col-span-3 " },
                 React.createElement("h1", null, "MOST RECENT POSTS"),
-                posts ? (posts.map(function (post) { return PostContainer(post); })) : (React.createElement("h1", null, "No posts yet")),
+                posts ?
+                    posts.map(function (post) { return PostContainer(post); })
+                    :
+                        React.createElement("h1", null, "No posts yet"),
                 React.createElement("div", { className: "pt-5 " },
                     React.createElement("button", { className: "text-4xl hover:bg-custom-dark-blue w-10 ", onClick: getPrevSet }, "<"),
                     React.createElement("i", { className: "w-5 px-10" }),
@@ -68,7 +71,6 @@ function BlogOverview() {
 }
 //Creates a singular post
 var PostContainer = function (post) {
-    var user_id = post.user_details._id;
     return ((React.createElement("div", { className: "border border-custom-silver mt-3 p-3 " },
         React.createElement("div", null,
             React.createElement("div", { className: "grid grid-cols-2 text-base " },

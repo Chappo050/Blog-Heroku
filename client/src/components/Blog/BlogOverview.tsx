@@ -1,4 +1,3 @@
-import { baseURL } from "../baseURL";
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -8,7 +7,7 @@ const { DateTime } = require("luxon");
 
 
 const api = axios.create({
-  baseURL: baseURL + "/blog",
+  baseURL:"/api/blog",
 });
 
 interface User {
