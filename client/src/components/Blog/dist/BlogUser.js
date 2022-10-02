@@ -5,7 +5,7 @@ var axios_1 = require("axios");
 var react_router_dom_1 = require("react-router-dom");
 var DateTime = require("luxon").DateTime;
 var api = axios_1["default"].create({
-    baseURL: window.location.hostname + "/api" + window.location.pathname,
+    baseURL: "/api" + window.location.pathname,
     withCredentials: true
 });
 var defaultPost = [];
