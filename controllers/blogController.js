@@ -1,4 +1,5 @@
 const { body, validationResult } = require("express-validator"); //Data parsing
+const { default: mongoose } = require("mongoose");
 const post = require("../models/post.js");
 const Post = require("../models/post.js");
 const User = require("../models/user.js");
@@ -169,7 +170,7 @@ exports.edit_post = [
       //Update message and isPublic, not that it is edited
       Post.findOneAndUpdate(
         {
-          _id: req.params.postId,
+          _id: mongoose.Types.ObjectId(req.params.postId),
         },
         { message: req.body.message, isPublic: req.body.isPublic },
         { new: true },

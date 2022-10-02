@@ -5,6 +5,9 @@ var _require = require("express-validator"),
     validationResult = _require.validationResult; //Data parsing
 
 
+var _require2 = require("mongoose"),
+    mongoose = _require2["default"];
+
 var post = require("../models/post.js");
 
 var Post = require("../models/post.js");
@@ -193,7 +196,7 @@ function (req, res, next) {
     // Data from form is valid.
     //Update message and isPublic, not that it is edited
     Post.findOneAndUpdate({
-      _id: req.params.postId
+      _id: mongoose.Types.ObjectId(req.params.postId)
     }, {
       message: req.body.message,
       isPublic: req.body.isPublic
