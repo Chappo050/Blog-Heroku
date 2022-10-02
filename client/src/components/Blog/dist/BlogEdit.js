@@ -55,19 +55,17 @@ function PostEdit() {
     var _this = this;
     var navigate = react_router_dom_1.useNavigate();
     var _a = react_1.useState(false), messagePosted = _a[0], setMessagePosted = _a[1];
-    var _b = react_1.useState(true), auth = _b[0], setAuth = _b[1]; //replace with real Auth later
-    var _c = react_1.useState({
+    var _b = react_1.useState({
         _id: "",
         user_details: {},
         message: "",
         post_time: "",
         isPublic: true
-    }), formValue = _c[0], setformValue = _c[1];
+    }), formValue = _b[0], setformValue = _b[1];
     react_1.useEffect(function () {
-        if (!auth) {
-            navigate("/user/login");
-        }
-        axios_1["default"].get("/api" + window.location.pathname).then(function (res) {
+        axios_1["default"]
+            .get("/api" + window.location.pathname, { withCredentials: true })
+            .then(function (res) {
             setformValue(res.data[0]);
         });
     }, []);
@@ -77,7 +75,7 @@ function PostEdit() {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
-                    return [4 /*yield*/, axios_1["default"].post("/api" + window.location.pathname, formValue)];
+                    return [4 /*yield*/, axios_1["default"].post("/api" + window.location.pathname, formValue, { withCredentials: true })];
                 case 1:
                     result = _a.sent();
                     if (result.status === 200) {
