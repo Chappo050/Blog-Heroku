@@ -41,6 +41,10 @@ var react_router_dom_1 = require("react-router-dom");
 var react_1 = require("react");
 var axios_1 = require("axios");
 //API setup
+var api = axios_1["default"].create({
+    baseURL: "/api",
+    withCredentials: true
+});
 function Auth(_a) {
     var children = _a.children;
     var _b = react_1.useState(false), logged = _b[0], setLogged = _b[1];
@@ -50,8 +54,8 @@ function Auth(_a) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, axios_1["default"]
-                            .get("http://localhost:5000/user/auth/", {
+                    case 0: return [4 /*yield*/, api
+                            .get("/user/auth", {
                             withCredentials: true
                         })
                             .then(function (res) {

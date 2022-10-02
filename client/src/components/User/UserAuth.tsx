@@ -2,10 +2,9 @@
 import { Navigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { baseURL } from "../baseURL";
 //API setup
 const api = axios.create({
-  baseURL:  baseURL,
+  baseURL:  "/api",
   withCredentials: true,
 });
 

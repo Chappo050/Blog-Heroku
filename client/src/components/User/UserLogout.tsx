@@ -2,11 +2,10 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { baseURL } from "../baseURL";
 
 //API setup
 const api = axios.create({
-  baseURL: baseURL + "/user/logout",
+  baseURL: "/api/user/logout",
   withCredentials: true,
 });
 

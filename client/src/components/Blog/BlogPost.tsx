@@ -1,10 +1,9 @@
 //IMPROTS//
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { baseURL } from "../baseURL";
 //API setup
 const api = axios.create({
-  baseURL:  baseURL + "/blog/post",
+  baseURL:  "/api/blog/post",
   withCredentials: true,
 });
 

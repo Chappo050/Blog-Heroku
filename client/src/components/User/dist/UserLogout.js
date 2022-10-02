@@ -6,10 +6,9 @@ var axios_1 = require("axios");
 var react_router_dom_1 = require("react-router-dom");
 //API setup
 var api = axios_1["default"].create({
-    baseURL: "http://localhost:5000/user/logout",
+    baseURL: "/api/user/logout",
     withCredentials: true
 });
-var defaultErrorMessage = [];
 function UserLogin() {
     var navigate = react_router_dom_1.useNavigate();
     react_1.useEffect(function () {

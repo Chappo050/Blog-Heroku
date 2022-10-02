@@ -16,7 +16,7 @@ var react_1 = require("react");
 var axios_1 = require("axios");
 //API setup
 var api = axios_1["default"].create({
-    baseURL: "http://localhost:5000/blog/post",
+    baseURL: "/api/blog/post",
     withCredentials: true
 });
 function BlogPost() {

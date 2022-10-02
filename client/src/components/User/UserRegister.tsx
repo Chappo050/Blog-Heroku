@@ -2,10 +2,9 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { baseURL } from "../baseURL";
 //API setup
 const api = axios.create({
-  baseURL: baseURL + "/user/register",
+  baseURL:"/api/user/register",
 });
 
 

@@ -48,22 +48,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 //IMPROTS//
-var react_1 = require("react");
 var axios_1 = require("axios");
 var react_router_dom_1 = require("react-router-dom");
+var react_1 = require("react");
 //API setup
 var api = axios_1["default"].create({
-    baseURL: "http://localhost:5000/"
+    baseURL: "/api"
 });
 function UserLogin() {
     var _this = this;
-    react_1.useEffect(function () {
-        api.get('/user/login').then(function (res) {
-            (res.data);
-        });
-    }, []);
     var navigate = react_router_dom_1.useNavigate();
-    var _a = react_1["default"].useState({
+    var _a = react_1.useState({
         username: '',
         password: ''
     }), formValue = _a[0], setformValue = _a[1];
@@ -73,7 +68,7 @@ function UserLogin() {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
-                    return [4 /*yield*/, axios_1["default"].post("/user/login/", formValue)];
+                    return [4 /*yield*/, api.post("/user/login/", formValue)];
                 case 1:
                     result = _a.sent();
                     if (result.status === 200) {
