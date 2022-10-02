@@ -4,13 +4,10 @@ import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
-
 function PostEdit() {
   let navigate = useNavigate();
 
   const [messagePosted, setMessagePosted] = useState(false);
-
-  const [auth, setAuth] = useState(true); //replace with real Auth later
 
   const [formValue, setformValue] = useState({
     _id: "",
@@ -21,19 +18,21 @@ function PostEdit() {
   });
 
   useEffect(() => {
-    if (!auth) {
-      navigate("/user/login");
-    }
-    axios.get("/api" + window.location.pathname).then((res) => {
-      setformValue(res.data[0]);
-    });
+    axios
+      .get("/api" + window.location.pathname, { withCredentials: true })
+      .then((res) => {
+        setformValue(res.data[0]);
+      });
   }, []);
-
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    let result = await axios.post( "/api" + window.location.pathname  , formValue);
+    let result = await axios.post(
+      "/api" + window.location.pathname,
+      formValue,
+      { withCredentials: true }
+    );
     if (result.status === 200) {
       setMessagePosted(true);
     }
